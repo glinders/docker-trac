@@ -3,7 +3,7 @@
 # FROM ubuntu:20.04
 FROM ubuntu:18.04
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
+RUN apt-get update && apt-get -y upgrade
 #
 # add requirements and tools first before installing trac
 #
