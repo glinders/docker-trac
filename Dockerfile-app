@@ -43,8 +43,8 @@ RUN pip install trac==1.4.3
 ADD install_trac_zip /install_trac_zip
 #
 # install child tickets plugin from source
-ADD childticketsplugin-18431.zip /childticketsplugin-18431.zip
-RUN /install_trac_zip /childticketsplugin-18431.zip
+ADD childticketsplugin-18437.zip /childticketsplugin-18437.zip
+RUN /install_trac_zip /childticketsplugin-18437.zip
 # install master tickets plugin from source
 ADD masterticketsplugin-18431.zip /masterticketsplugin-18431.zip
 RUN /install_trac_zip /masterticketsplugin-18431.zip
@@ -57,6 +57,15 @@ RUN /install_trac_zip /tracforms-trunk-18431.zip
 # install account manager plugin from source
 ADD TracAccountManager-trunk-18431.zip /TracAccountManager-trunk-18431.zip
 RUN /install_trac_zip /TracAccountManager-trunk-18431.zip
+# install graphviz plugin
+ADD graphvizplugin-18482.zip /graphvizplugin-18482.zip
+RUN /install_trac_zip /graphvizplugin-18482.zip
+# install PDF preview plugin
+ADD PdfPreviewPlugin.zip /PdfPreviewPlugin.zip
+RUN /install_trac_zip /PdfPreviewPlugin.zip
+# install PDF preview plugin
+ADD trac-allattachments.zip /trac-allattachments.zip
+RUN /install_trac_zip /trac-allattachments.zip
 #
 # todo:do we need these ?
 ###RUN apt-get install -y trac-customfieldadmin

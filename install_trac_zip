@@ -15,11 +15,26 @@ rm -rf ${ZIPTMPDIR}
 
 # unzip files
 unzip -d ${ZIPTMPDIR} ${ZIPNAME}
-# create a wheel, after finding setup.py
+
+# procedure:
+# - find setup.py
+# - cd dir with setup.py
+# - create a wheel and install it
+# there are two types of plugins:
+# - SVN based ones that have a trunk
+# - GIT based ones that have no trunk
+# we'll first look for the trunk one and install if there
+# else we'll find a 'naked' setup.py and install it
 cd ${ZIPTMPDIR}
+
+# is there a setup.py inside a 'trunk' directory
 SETUPPY=$(find . -name setup.py|grep trunk)
-# account for directories that contain 'trunk'
-if [ "${SETUPPY}" != "" ] ; then cd `dirname ${SETUPPY}` ; fi
+if [ "${SETUPPY}" == "" ]
+then
+  # if none, find a bare one
+  SETUPPY=$(find . -name setup.py)
+fi
+cd `dirname ${SETUPPY}`
 python setup.py bdist_wheel
 # install it
 pip install dist/*.whl
